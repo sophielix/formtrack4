@@ -58,7 +58,11 @@ function parseCSV(text) {
   const lines = text.trim().split('\n');
   if (lines.length < 2) return [];
 
-  const header = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, '').toLowerCase());
+  // Auto-détection du séparateur : ; ou ,
+  const firstLine = lines[0];
+  const sep = (firstLine.split(';').length > firstLine.split(',').length) ? ';' : ',';
+
+  const header = lines[0].split(sep).map(h => h.trim().replace(/^"|"$/g, '').toLowerCase());
 
   // Mapping flexible des colonnes
   const colMap = {
@@ -95,7 +99,7 @@ function parseCSV(text) {
     if (!line) continue;
 
     // Parse CSV line (gère les guillemets)
-    const values = parseCSVLine(line);
+    const values = parseCSVLine(line, sep);
 
     function get(key) {
       const idx = cols[key];
@@ -132,7 +136,7 @@ function parseCSV(text) {
   return sessions;
 }
 
-function parseCSVLine(line) {
+function parseCSVLine(line, sep = ',') {
   const result = [];
   let current = '';
   let inQuotes = false;
@@ -140,7 +144,7 @@ function parseCSVLine(line) {
     const ch = line[i];
     if (ch === '"') {
       inQuotes = !inQuotes;
-    } else if (ch === ',' && !inQuotes) {
+    } else if (ch === sep && !inQuotes) {
       result.push(current);
       current = '';
     } else {

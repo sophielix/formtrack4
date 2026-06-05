@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Marche Japonaise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- SCREENS -->
+    <div id="screen-accueil" class="screen active"></div>
+    <div id="screen-stats" class="screen"></div>
+    <div id="screen-lieux" class="screen"></div>
+    <div id="screen-progres" class="screen"></div>
+    <div id="screen-trophees" class="screen"></div>
+
+    <!-- MODALS -->
+    <div id="modal-ajout" class="modal-overlay hidden"></div>
+    <div id="modal-import" class="modal-overlay hidden"></div>
+    <div id="modal-trophy" class="modal-overlay hidden"></div>
+
+    <!-- BOTTOM NAV -->
+    <nav id="bottom-nav">
+      <button class="nav-btn active" data-screen="accueil">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-label">Accueil</span>
+      </button>
+      <button class="nav-btn" data-screen="stats">
+        <span class="nav-icon">📊</span>
+        <span class="nav-label">Stats</span>
+      </button>
+      <button class="nav-btn" data-screen="lieux">
+        <span class="nav-icon">📍</span>
+        <span class="nav-label">Lieux</span>
+      </button>
+      <button class="nav-btn" data-screen="progres">
+        <span class="nav-icon">📈</span>
+        <span class="nav-label">Progrès</span>
+      </button>
+      <button class="nav-btn" data-screen="trophees">
+        <span class="nav-icon">🏆</span>
+        <span class="nav-label">Trophées</span>
+      </button>
+    </nav>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="trophees.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
